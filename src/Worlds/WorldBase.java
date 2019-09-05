@@ -8,12 +8,12 @@ import Main.Handler;
 import java.awt.*;
 import java.util.LinkedList;
 
-
+import java.awt.Color;
 /**
  * Created by AlexVR on 7/2/2018.
  */
 public abstract class WorldBase {
-
+	
     //How many pixels are from left to right
     //How many pixels are from top to bottom
     //Must be equal
@@ -51,13 +51,15 @@ public abstract class WorldBase {
 
     }
 
-    public void render(Graphics g){
-
+    public void render(Graphics Grid){
+    	   
         for (int i = 0; i <= 800; i = i + GridPixelsize) {
 
-            g.setColor(Color.white);
-            g.drawLine(0, i, handler.getWidth() , i);
-            g.drawLine(i,0,i,handler.getHeight());
+        	
+			Grid.setColor(new Color(102 ,0 ,153));
+					
+            Grid.drawLine(0, i, handler.getWidth() , i);
+            Grid.drawLine(i,0,i,handler.getHeight());
 
         }
 

@@ -34,11 +34,16 @@ public class Player {
     }
 
     public void tick(){
+    	
         moveCounter++;
         if(moveCounter>=5) {
             checkCollisionAndMove();
             moveCounter=0;
-        }
+        } 
+        //if (!handler.getWorld().body.isEmpty()) {
+     	  // moveCounter - 0.5 =  moveCounter; 
+    //    }
+        
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
             direction="Up";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
@@ -47,14 +52,20 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
-        }
+        }//if(handler.getKeyManager().keyJustPressed(KeyEvent.)){ 
+        	//moveCounter - 1 = new moveCounter ; }
+      //  if(handler.getKeyManager().keyJustPressed(KeyEvent.-)) {
+        //	moveCounter+1 = new moveCounter;}
+   
+   }
+	
 
-    }
-
-    public void checkCollisionAndMove(){
+	public void checkCollisionAndMove(){
         handler.getWorld().playerLocation[xCoord][yCoord]=false;
         int x = xCoord;
         int y = yCoord;
+       
+        
         switch (direction){
             case "Left":
                 if(xCoord==0){
@@ -85,29 +96,32 @@ public class Player {
                 }
                 break;
         }
+        
         handler.getWorld().playerLocation[xCoord][yCoord]=true;
-
-
+    
+        if( handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) { 
+            handler.getWorld().body.addFirst(new Tail(x, y,handler));}
         if(handler.getWorld().appleLocation[xCoord][yCoord]){
             Eat();
-        }
+        } 
 
         if(!handler.getWorld().body.isEmpty()) {
             handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
             handler.getWorld().body.removeLast();
-            handler.getWorld().body.addFirst(new Tail(x, y,handler));
+            handler.getWorld().body.addFirst(new Tail(x, y,handler));}
+       if (!handler.getWorld().body.isEmpty()) {
+    	   
         }
-
-    }
-
-    public void render(Graphics g,Boolean[][] playeLocation){
+        
+	}
+    public void render(Graphics Snake  ,Boolean[][] playeLocation){
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-                g.setColor(Color.WHITE);
+                Snake.setColor(Color.GREEN);
 
                 if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
-                    g.fillRect((i*handler.getWorld().GridPixelsize),
+                    Snake.fillRect((i*handler.getWorld().GridPixelsize),
                             (j*handler.getWorld().GridPixelsize),
                             handler.getWorld().GridPixelsize,
                             handler.getWorld().GridPixelsize);
@@ -245,4 +259,7 @@ public class Player {
     public void setJustAte(boolean justAte) {
         this.justAte = justAte;
     }
-}
+
+	
+		
+	}

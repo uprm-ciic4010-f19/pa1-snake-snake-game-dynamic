@@ -51,5 +51,10 @@ public class Handler {
         this.world = world;
     }
 
+	public boolean keyJustPressed(int vkN) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }

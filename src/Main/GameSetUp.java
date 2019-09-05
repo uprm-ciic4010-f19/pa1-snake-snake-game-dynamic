@@ -30,7 +30,7 @@ public class GameSetUp implements Runnable {
     private Thread thread;
 
     private BufferStrategy bs;
-    private Graphics g;
+    private Graphics Snake, Apple;
 
 
 
@@ -169,20 +169,20 @@ public class GameSetUp implements Runnable {
             display.getCanvas().createBufferStrategy(3);
             return;
         }
-        g = bs.getDrawGraphics();
+        Snake = bs.getDrawGraphics();
         //Clear Screen
-        g.clearRect(0, 0, width, height);
+        Snake.clearRect(0, 0, width, height);
 
         //Draw Here!
 
-        g.drawImage(loading ,0,0,width,height,null);
+        Snake.drawImage(loading ,0,0,width,height,null);
         if(State.getState() != null)
-            State.getState().render(g);
+            State.getState().render(Snake );
 
 
         //End Drawing!
         bs.show();
-        g.dispose();
+        Snake.dispose();
     }
 
     public synchronized void stop(){
