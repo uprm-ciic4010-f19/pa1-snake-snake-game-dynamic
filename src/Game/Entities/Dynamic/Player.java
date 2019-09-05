@@ -101,6 +101,7 @@ public class Player {
     
         if( handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) { 
             handler.getWorld().body.addFirst(new Tail(x, y,handler));}
+        // esto permite incrementar la tail del player utilizando el boton n
         if(handler.getWorld().appleLocation[xCoord][yCoord]){
             Eat();
         } 
@@ -109,9 +110,9 @@ public class Player {
             handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
             handler.getWorld().body.removeLast();
             handler.getWorld().body.addFirst(new Tail(x, y,handler));}
-       if (!handler.getWorld().body.isEmpty()) {
+      // if (!handler.getWorld().body.isEmpty()) {
     	   
-        }
+    //    }
         
 	}
     public void render(Graphics Snake  ,Boolean[][] playeLocation){
