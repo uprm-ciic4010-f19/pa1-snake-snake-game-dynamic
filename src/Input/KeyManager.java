@@ -13,8 +13,8 @@ public class KeyManager implements KeyListener {
 	private boolean[] keys,justPressed,cantPress;
 	public boolean up=false, down=false, left=false, right=false;
 	public boolean pbutt=false;
+	public boolean Plus= false;
 
-public boolean f = false;
 	public KeyManager(){
 
 		keys = new boolean[256];
@@ -41,7 +41,7 @@ public boolean f = false;
 		down = keys[KeyEvent.VK_S];
 		left = keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_D];
-           f  = keys[KeyEvent.VK_N];
+        // Plus= keys[KeyEvent.VK_EQUALS];
 		pbutt = keys[KeyEvent.VK_ESCAPE];
 
 	}
