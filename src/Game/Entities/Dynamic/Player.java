@@ -33,7 +33,7 @@ public class Player {
         direction= "Right";
         justAte = false;
         lenght= 1;
-        speed= 0 ;
+        speed= 0 ;// added speed and Score variables
         Score= 0;	//Initializes score to 0
         
     }
@@ -157,7 +157,7 @@ public class Player {
 
 	}
 
-	public void render(Graphics g  ,Boolean[][] playeLocation){
+	public void render(Graphics g  ,Boolean[][] playeLocation, Boolean [][] appleLocation){
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
