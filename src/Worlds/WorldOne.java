@@ -48,7 +48,7 @@ public class WorldOne extends WorldBase{
     @Override
     public void render(Graphics Snake){
         super.render(Snake);
-       player.render(Snake,playerLocation);
+        player.render(Snake,playerLocation);
     }
 
 }

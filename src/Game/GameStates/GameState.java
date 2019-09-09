@@ -41,9 +41,9 @@ public class GameState extends State {
     }
 
     @Override
-    public void render(Graphics Snake) {
+    public void render(Graphics g) {
 
-        handler.getWorld().render(Snake);
+        handler.getWorld().render(g);
 
     }
 

@@ -30,7 +30,7 @@ public class GameSetUp implements Runnable {
     private Thread thread;
 
     private BufferStrategy bs;
-    private Graphics Snake, Apple;
+    private Graphics Snake;
 
 
 
@@ -194,6 +194,9 @@ public class GameSetUp implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public void  Score() { 
+    	
     }
 
     public KeyManager getKeyManager(){

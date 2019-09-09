@@ -6,7 +6,8 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import Main.Handler;
-
+import Resources.Images;
+import Game.GameStates.*;;
 /**
  * Created by AlexVR on 7/2/2018.
  */
@@ -20,8 +21,8 @@ public class Player {
     public int xCoord;
     public int yCoord;
     public int speed ;
-    public int moveCounter;
-
+    public double moveCounter;
+    public  double Score;						//variable that stores size
     public String direction;//is your first name one?
 
     public Player(Handler handler){
@@ -33,62 +34,69 @@ public class Player {
         justAte = false;
         lenght= 1;
         speed= 0 ;
-         
+        Score= 0;	//Initializes score to 0
+        
     }
-
     public void tick(){
     	
         moveCounter++;
-        
-        if(moveCounter>=  5 ) {
+        // changed 5 for 10
+        if  (moveCounter>=  10) {
      
             checkCollisionAndMove();
+            // changed 0 for speed
             moveCounter= speed;
-           } 
-           ///	moveCounter = speed -1 ; }
-      //  if(!handler.getWorld().body.isEmpty()) {
-      //  	checkCollisionAndMove();
-       // 	speed= (int) (moveCounter + 0.25); 
+        }
         
-     //   if(!handler.getWorld().body.isEmpty()) {
-     //	moveCounter --; 
-    //   }
+        
+    
+     
+      
         int x = xCoord;
         int y = yCoord;
         
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP) || handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)){
+        	if(this.direction != "Down")
         	direction="Up";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
+        	
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)||handler.getKeyManager().keyJustPressed(KeyEvent.VK_S) ){
+        	if(this.direction != "Up")
         	direction="Down";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)||handler.getKeyManager().keyJustPressed(KeyEvent.VK_A)){
+        	if (this.direction!="Right")
         	direction="Left";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
-        	direction="Right"; }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)){
-        		direction="Up";
-        	}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S)){
-        		direction="Down";
-        	}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_A)){
-        		direction="Left";
-        	}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)){
-        		direction="Right";
-        	}if( handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) { 
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)||handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)){
+        	if(this.direction!="Left")
+        	direction="Right"; }
+       
+        	// Press N key to increase the tail
+        	if( handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) { 
         		checkCollisionAndMove();
         		handler.getWorld().body.addFirst(new Tail(x, y,handler));}
-        	if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){ 
-            	 
-        		 checkCollisionAndMove();
-        		 moveCounter++ ;
+        	// press esc key to pause the game
+        	if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE))
+        		 {
         	}
-           //moveCounter = speed -1 ; }
-           }
-
-           // if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){ 
-        	 //direction = "Plus";}
-      //  if(handler.getKeyManager().keyJustPressed(KeyEvent.-)) {
-        //	moveCounter+1 = new moveCounter;}
-   
-   
-	
+        		
+        	// press plus key to increase in speed
+        	if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){ 
+                checkCollisionAndMove();
+                speed= speed +1;
+        	
+        	}
+          
+        
+            // press minus key to decrease in speed
+            if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
+            	checkCollisionAndMove();
+              speed=speed-1;
+            }
+          }
+        
+       
+    
+     
+    
 
 	public void checkCollisionAndMove(){
         handler.getWorld().playerLocation[xCoord][yCoord]=false;
@@ -106,7 +114,7 @@ public class Player {
                 break;
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-                    kill();
+                ;
                 }else{
                     xCoord++;
                 }
@@ -129,46 +137,51 @@ public class Player {
         
         handler.getWorld().playerLocation[xCoord][yCoord]=true;
     
-        if( handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) { 
-            handler.getWorld().body.addFirst(new Tail(x, y,handler));}
-        // esto permite incrementar la tail del player utilizando el boton n
+   
         if (handler.getWorld().appleLocation[xCoord][yCoord]){
             Eat();
+          
         } 
-        if(!handler.getWorld().body.isEmpty()) {
-        moveCounter= speed +1  ; }
+        
+       
         if(!handler.getWorld().body.isEmpty()) {
             handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
             handler.getWorld().body.removeLast();
             handler.getWorld().body.addFirst(new Tail(x, y,handler));}
-     // for (int i  = Tail; i>0 ; i--) {
-    	//  if (i>5) &&
-      }
-        //if (!handler.getWorld().body.isEmpty()) {
-    	   
-    //    }
-        
+    
+//       switch(direction) {
+//       case "Up":
+//    	   if (handler.getWorld().player.xCoord= handler.getWorld().body.)
+//          
+//       }
 
-	
+	}
 
-	public void render(Graphics Snake  ,Boolean[][] playeLocation){
+	public void render(Graphics g  ,Boolean[][] playeLocation){
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-                Snake.setColor(Color.GREEN);
-
+          g.setColor(Color.GREEN);
+          
+      
                 if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
-                    Snake.fillRect((i*handler.getWorld().GridPixelsize),
-                            (j*handler.getWorld().GridPixelsize),
-                            handler.getWorld().GridPixelsize,
-                            handler.getWorld().GridPixelsize);
+                	
+                g.fillRect((i*handler.getWorld().GridPixelsize),
+                         (j*handler.getWorld().GridPixelsize),
+                          handler.getWorld().GridPixelsize,
+                          handler.getWorld().GridPixelsize);
+                
+           
+               }
+               
+               }
                 }
 
             }
-        }
+        
 
-
-    }
+	
+    
 
     public void Eat(){
         lenght++;
@@ -276,20 +289,31 @@ public class Player {
         }
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
+       // added code to Eat() to increase speed and calculate Score
+        checkCollisionAndMove();
+         speed= speed +1;
+        Score = Math.sqrt(2*Score +1); 
+        
+      	System.out.println(Score);
+        
     }
-
-    public void kill(){
+ 
+    
+	 public void kill(){
         lenght = 0;
+       
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
-                handler.getWorld().playerLocation[i][j]=false;
+                handler.getWorld().playerLocation[i][j]= false;
+            
 
             }
         }
     }
 
     public boolean isJustAte() {
+   
         return justAte;
     }
 
