@@ -1,6 +1,7 @@
 package Game.Entities.Dynamic;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Random;
@@ -185,6 +186,10 @@ public class Player {
                
                }
                 }
+        
+        g.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+		g.setColor(Color.WHITE);
+		g.drawString("Score: "+Score*100,64*5, 64);
 
         
         
