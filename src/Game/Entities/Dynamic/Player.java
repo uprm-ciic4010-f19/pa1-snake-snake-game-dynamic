@@ -7,6 +7,8 @@ import java.util.Random;
 
 import Main.Handler;
 import Resources.Images;
+import UI.UIImageButton;
+import UI.UIManager;
 import Game.GameStates.*;;
 /**
  * Created by AlexVR on 7/2/2018.
@@ -17,6 +19,7 @@ public class Player {
 	public int lenght;
     public boolean justAte;
     private Handler handler;
+    public  State PauseState ;
 
     public int xCoord;
     public int yCoord;
@@ -54,7 +57,7 @@ public class Player {
       
         int x = xCoord;
         int y = yCoord;
-        
+        // added no backtracking commands to all direction keys
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP) || handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)){
         	if(this.direction != "Down")
         	direction="Up";
@@ -75,9 +78,15 @@ public class Player {
         		handler.getWorld().body.addFirst(new Tail(x, y,handler));}
         	// press esc key to pause the game
         	if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE))
-        		 {
-        	}
+        		 { 
         		
+        	State.getState();
+			State.setState(PauseState);
+           		 
+        	}    // press 1 key to reStart the world
+        		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_1)) {
+        			handler.getGame().reStart();
+        		}
         	// press plus key to increase in speed
         	if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){ 
                 checkCollisionAndMove();
@@ -107,28 +116,28 @@ public class Player {
         switch (direction){
             case "Left":
                 if(xCoord==0){
-                    kill();
+                	xCoord =handler.getWorld().GridWidthHeightPixelCount-1;
                 }else{
                     xCoord--;
                 }
                 break;
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-                ;
+                	xCoord=0  ;
                 }else{
                     xCoord++;
                 }
                 break;
             case "Up":
                 if(yCoord==0){
-                    kill();
+                	yCoord=handler.getWorld().GridWidthHeightPixelCount-1;
                 }else{
                     yCoord--;
                 }
                 break;
             case "Down":
                 if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-                    kill();
+                	yCoord=0 ;
                 }else{
                     yCoord++;
                 }
@@ -148,16 +157,16 @@ public class Player {
             handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
             handler.getWorld().body.removeLast();
             handler.getWorld().body.addFirst(new Tail(x, y,handler));}
-    
+    // code for collision with body
 //       switch(direction) {
 //       case "Up":
-//    	   if (handler.getWorld().player.xCoord= handler.getWorld().body.)
+    	///   if (handler.getWorld().player.xCoord= handler.getWorld().body.add(Tail x)) {
 //          
-//       }
+    // }
 
 	}
 
-	public void render(Graphics g  ,Boolean[][] playeLocation, Boolean [][] appleLocation){
+	public void render(Graphics g  ,Boolean[][] playeLocation){
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
@@ -177,6 +186,8 @@ public class Player {
                }
                 }
 
+        
+        
             }
         
 
@@ -305,7 +316,7 @@ public class Player {
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
-                handler.getWorld().playerLocation[i][j]= false;
+                handler.getWorld().playerLocation[i][j]= true;
             
 
             }

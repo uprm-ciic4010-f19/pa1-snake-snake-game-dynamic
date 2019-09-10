@@ -33,8 +33,8 @@ public class Apple {
 //         return;
 //       }
         //	if (fps > 300) {
-        // if (!handler.getWorld().body.isEmpty())
-         //handler.getWorld().body.addLast(new Tail(x, y,handler));}
+        // if ()
+         
         }
 
         
