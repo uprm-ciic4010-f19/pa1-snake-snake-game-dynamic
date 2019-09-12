@@ -82,8 +82,8 @@ public class Player {
         	if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE))
         		 { 
         		
-        	State.getState();
-			State.setState(PauseState);
+//        	State.getState();
+//			State.setState(PauseState);
 			State.setState(handler.getGame().pauseState);
 
            		 
