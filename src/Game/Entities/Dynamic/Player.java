@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Random;
+import Game.GameStates.GameOver;
 
 import Main.Handler;
 import Resources.Images;
@@ -83,6 +84,8 @@ public class Player {
         		
         	State.getState();
 			State.setState(PauseState);
+			State.setState(handler.getGame().pauseState);
+
            		 
         	}    // press 1 key to reStart the world
         		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_1)) {
@@ -139,6 +142,9 @@ public class Player {
             case "Down":
                 if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
                 	yCoord=0 ;
+        			State.setState(handler.getGame().gameOver);
+        			
+
                 }else{
                     yCoord++;
                 }
@@ -189,7 +195,7 @@ public class Player {
         
         g.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		g.setColor(Color.WHITE);
-		g.drawString("Score: "+Score*100,64*5, 64);
+		g.drawString("Score: "+Score,64*5, 64);
 
         
         
