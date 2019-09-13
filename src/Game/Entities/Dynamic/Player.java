@@ -125,6 +125,7 @@ public class Player {
                     xCoord--;
                 }
                 break;
+           
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
                 	xCoord=0  ;
@@ -132,6 +133,7 @@ public class Player {
                     xCoord++;
                 }
                 break;
+            
             case "Up":
                 if(yCoord==0){
                 	yCoord=handler.getWorld().GridWidthHeightPixelCount-1;
@@ -139,10 +141,10 @@ public class Player {
                     yCoord--;
                 }
                 break;
+            
             case "Down":
                 if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
                 	yCoord=0 ;
-        			State.setState(handler.getGame().gameOver);
         			
 
                 }else{
@@ -164,7 +166,8 @@ public class Player {
             handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
             handler.getWorld().body.removeLast();
             handler.getWorld().body.addFirst(new Tail(x, y,handler));}
-    // code for collision with body
+  
+ // code for collision with body
 //       switch(direction) {
 //       case "Up":
     	///   if (handler.getWorld().player.xCoord= handler.getWorld().body.add(Tail x)) {
@@ -211,7 +214,8 @@ public class Player {
         handler.getWorld().appleLocation[xCoord][yCoord]=false;
         handler.getWorld().appleOnBoard=false;
         switch (direction){
-            case "Left":
+            
+        case "Left":
                 if( handler.getWorld().body.isEmpty()){
                     if(this.xCoord!=handler.getWorld().GridWidthHeightPixelCount-1){
                         tail = new Tail(this.xCoord+1,this.yCoord,handler);
@@ -236,7 +240,8 @@ public class Player {
 
                 }
                 break;
-            case "Right":
+        
+        case "Right":
                 if( handler.getWorld().body.isEmpty()){
                     if(this.xCoord!=0){
                         tail=new Tail(this.xCoord-1,this.yCoord,handler);
@@ -260,7 +265,8 @@ public class Player {
 
                 }
                 break;
-            case "Up":
+        
+        case "Up":
                 if( handler.getWorld().body.isEmpty()){
                     if(this.yCoord!=handler.getWorld().GridWidthHeightPixelCount-1){
                         tail=(new Tail(this.xCoord,this.yCoord+1,handler));
@@ -284,7 +290,8 @@ public class Player {
 
                 }
                 break;
-            case "Down":
+            
+        case "Down":
                 if( handler.getWorld().body.isEmpty()){
                     if(this.yCoord!=0){
                         tail=(new Tail(this.xCoord,this.yCoord-1,handler));
@@ -309,6 +316,7 @@ public class Player {
                 }
                 break;
         }
+        
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
        // added code to Eat() to increase speed and calculate Score
@@ -316,7 +324,7 @@ public class Player {
          speed= speed +1;
         Score = Math.sqrt(2*Score +1); 
         
-      	System.out.println(Score);
+      	//System.out.println(Score);
         
     }
  
@@ -329,7 +337,16 @@ public class Player {
 
                 handler.getWorld().playerLocation[i][j]= true;
             
-
+                if(handler.getWorld().playerLocation[i][j] == handler.getWorld().playerLocation[0][0]) {
+                	System.out.println("GAME OVER");}
+//                	
+//                	right = false;
+//                	left = false;
+//                	up = false;
+//                	down = false;
+//                GAME OVER SCREEN
+////                	
+//                }
             }
         }
     }
