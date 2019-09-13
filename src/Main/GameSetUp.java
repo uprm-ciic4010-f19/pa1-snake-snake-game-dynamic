@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
+import Game.Entities.Dynamic.*;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -200,7 +201,7 @@ public class GameSetUp implements Runnable {
         }
     }
     public void  Score() { 
-    	
+    //	 Math.sqrt(2*Score +1); 
     }
 
     public KeyManager getKeyManager(){

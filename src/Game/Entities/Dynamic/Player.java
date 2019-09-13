@@ -5,13 +5,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-import Game.GameStates.GameOver;
 
 import Main.Handler;
 import Resources.Images;
 import UI.UIImageButton;
 import UI.UIManager;
-import Game.GameStates.*;;
+import Game.GameStates.*;
+import Main.GameSetUp;
+
 /**
  * Created by AlexVR on 7/2/2018.
  */
@@ -128,7 +129,7 @@ public class Player {
            
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-                	xCoord=0  ;
+                	xCoord=0;
                 }else{
                     xCoord++;
                 }
@@ -168,11 +169,11 @@ public class Player {
             handler.getWorld().body.addFirst(new Tail(x, y,handler));}
   
  // code for collision with body
-//       switch(direction) {
-//       case "Up":
-    	///   if (handler.getWorld().player.xCoord= handler.getWorld().body.add(Tail x)) {
-//          
-    // }
+       switch(direction) {
+       case "Up":
+    	   if (handler.getWorld().player.xCoord == handler.getWorld().body.add(new Tail(x, y, handler))) {
+          
+     }}
 
 	}
 
@@ -319,17 +320,15 @@ public class Player {
         
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
-       // added code to Eat() to increase speed and calculate Score
+      
+        // added code to Eat() to increase speed and calculate Score
         checkCollisionAndMove();
          speed= speed +1;
-        Score = Math.sqrt(2*Score +1); 
-        
-      	//System.out.println(Score);
-        
+         Score = Math.sqrt(2*Score +1); 	        
     }
  
     
-	 public void kill(){
+	public void kill(){
         lenght = 0;
        
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
@@ -338,15 +337,9 @@ public class Player {
                 handler.getWorld().playerLocation[i][j]= true;
             
                 if(handler.getWorld().playerLocation[i][j] == handler.getWorld().playerLocation[0][0]) {
-                	System.out.println("GAME OVER");}
-//                	
-//                	right = false;
-//                	left = false;
-//                	up = false;
-//                	down = false;
-//                GAME OVER SCREEN
-////                	
-//                }
+//                	System.out.println("GAME OVER");
+        			State.setState(handler.getGame().gameOver);
+                }
             }
         }
     }

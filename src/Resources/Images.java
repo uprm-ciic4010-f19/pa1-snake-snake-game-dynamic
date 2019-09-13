@@ -16,9 +16,9 @@ public class Images {
     public static BufferedImage Pause;
     public static BufferedImage[] Resume;
     public static BufferedImage[] BTitle;
-    public static BufferedImage[] Options;
+    public static BufferedImage[] Restart;
     public static BufferedImage GameOver;
-    public static BufferedImage Score;
+    public static BufferedImage[] Score;
     public static ImageIcon icon;
 
     public Images() {
@@ -26,7 +26,8 @@ public class Images {
         butstart = new BufferedImage[3];
         Resume = new BufferedImage[2];
         BTitle = new BufferedImage[2];
-        Options = new BufferedImage[2];
+        Restart = new BufferedImage[2];
+        Score = new BufferedImage[1];
 
         try {
 
@@ -36,14 +37,14 @@ public class Images {
             Resume[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/ResumeP.png"));
             BTitle[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitle.png"));
             BTitle[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitleP.png"));
-            Options[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Restart.png"));
-            Options[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Restart2.png"));
             butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
-            
+
+            Restart[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Restart.png"));
+            Restart[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Restart2.png"));
             GameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/gameOver.png"));
-            Score = ImageIO.read(getClass().getResourceAsStream("/Sheets/Score.jpg"));
+            Score[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Score2.png"));
 
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
 

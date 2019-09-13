@@ -10,6 +10,7 @@ import Resources.Images;
 import UI.ClickListlener;
 import UI.UIImageButton;
 import UI.UIManager;
+import Game.Entities.Dynamic.Player;
 
 
 
@@ -38,8 +39,13 @@ public class GameOver extends State {
 	            handler.getMouseManager().setUimanager(null);
 	            State.setState(handler.getGame().menuState);
 	        }));
-
- 
+	        
+	        uiManager.addObjects(new UIImageButton(33 + 192 * 3,  handler.getGame().getHeight() - 300, 128, 64, Images.Score, () -> {
+	            handler.getMouseManager().setUimanager(null);
+	            State.setState(handler.getGame().menuState);
+	        }));
+//	        
+	        
 	}
 	
 
@@ -55,46 +61,9 @@ public class GameOver extends State {
         g.setColor(Color.darkGray);
         g.fillRect(0,0,handler.getWidth(),handler.getHeight());
         g.drawImage(Images.GameOver,0,0,handler.getGame().getWidth(),handler.getGame().getHeight(),null);
+               
         uiManager.Render(g);
 
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-//public  class Gameover //extends State { 
-//{
-////public Gameover(Handler handler) {
-//	//	super(handler);
-//		
-//	//}
-//	private final static int Width = 800 ;
-//	private final static  int Height = 800;
-//void GameEnd(Graphics h) {
-//    
-//    String message = "Game over";
-//
-//    Font font = new Font("Comic Sans", Font.BOLD, 14);
-//
-//
-//  
-//    h.setColor(Color.red);
-//    h.setFont(font);
-//    
-//    
-//    h.drawString(message, ( Width ) / 2,
-//            Height / 2);
-//}
-//
-//}	
