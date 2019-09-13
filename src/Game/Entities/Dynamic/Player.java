@@ -27,9 +27,8 @@ public class Player {
     public double moveCounter;
     public  double Score;						//variable that stores size
     public String direction;//is your first name one?
-
-    public Player(Handler handler){
-        this.handler = handler;
+private State GameOver;
+    public Player(Handler handler){        this.handler = handler;
         xCoord = 0;
         yCoord = 0;
         moveCounter = 0;
@@ -80,8 +79,7 @@ public class Player {
         	if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE))
         		 { 
         		
-        	State.getState();
-			State.setState(PauseState);
+        	State.setState(handler.getGame().pauseState);
            		 
         	}    // press 1 key to reStart the world
         		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_1)) {
@@ -112,7 +110,7 @@ public class Player {
         int x = xCoord;
         int y = yCoord;
 
-       
+       // changed kill for xCoord= the opposite side or yCoord
         switch (direction){
             case "Left":
                 if(xCoord==0){
@@ -143,8 +141,12 @@ public class Player {
                 }
                 break;
         }
-        
+        // this is the code to help the snake  collied with itself and kill it 
+        if (handler.getWorld().playerLocation[xCoord][yCoord] == handler.getWorld().bodyLocation[xCoord][yCoord] ) {
+        	kill();
+        } else {
         handler.getWorld().playerLocation[xCoord][yCoord]=true;
+        }
     
    
         if (handler.getWorld().appleLocation[xCoord][yCoord]){
@@ -157,15 +159,11 @@ public class Player {
             handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
             handler.getWorld().body.removeLast();
             handler.getWorld().body.addFirst(new Tail(x, y,handler));}
-    // code for collision with body
-//       switch(direction) {
-//       case "Up":
-    	///   if (handler.getWorld().player.xCoord= handler.getWorld().body.add(Tail x)) {
-//          
-    // }
 
+        
 	}
 
+	
 	public void render(Graphics g  ,Boolean[][] playeLocation){
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
@@ -173,8 +171,7 @@ public class Player {
           g.setColor(Color.GREEN);
           
       
-                if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
-                	
+                if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j])
                 g.fillRect((i*handler.getWorld().GridPixelsize),
                          (j*handler.getWorld().GridPixelsize),
                           handler.getWorld().GridPixelsize,
@@ -188,7 +185,7 @@ public class Player {
 
         
         
-            }
+            
         
 
 	
@@ -304,9 +301,8 @@ public class Player {
         checkCollisionAndMove();
          speed= speed +1;
         Score = Math.sqrt(2*Score +1); 
-        
-      	System.out.println(Score);
-        
+   
+      System.out.println(Score);
     }
  
     
@@ -317,7 +313,7 @@ public class Player {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
                 handler.getWorld().playerLocation[i][j]= true;
-            
+          State.setState(handler.getGame().GameOverState);
 
             }
         }

@@ -32,7 +32,7 @@ public abstract class WorldBase {
     protected Apple apple;
     public Boolean[][] appleLocation;
 
-
+     public Boolean [][] bodyLocation;
     public Boolean[][] playerLocation;
 
     public LinkedList<Tail> body = new LinkedList<>();

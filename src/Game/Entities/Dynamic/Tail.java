@@ -11,9 +11,8 @@ public class Tail {
         this.x=x;
         this.y=y;
         handler.getWorld().playerLocation[x][y]=true;
-        
-        // if (handler.getWorld().playerLocation[xCoord][yCoord]= handler.getWorld().body[xCoord][yCoord]) {
-        	 //terminate run 
+        //added bodyLocation to  tail class
+   handler.getWorld().bodyLocation[x][y]= true;
     }
 
 }

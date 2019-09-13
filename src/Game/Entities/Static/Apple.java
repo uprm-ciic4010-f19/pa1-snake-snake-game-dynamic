@@ -21,21 +21,24 @@ public class Apple {
         this.xCoord=x;
         this.yCoord=y;
     }
-//        public boolean goodapple() {
-//return;
-//        }
-//  //   if (fps< 300) {
+}
+//        public void goodapple() {
+//
+//        
+//     for (handler.getGame().run();
 // 
-//    //	 Apple.setColor(Color.RED);
+//    	 Apple.setColor(Color.RED);
 //     } 
+//}
+//    
+//		}
+//	public void  badapple() {
 //     
-//       public boolean  badapple() {
-//         return;
-//       }
-        //	if (fps > 300) {
-        // if ()
-         
-        }
+//     
+//        if (fps > 300) {
+//         if ()}
+//         
+//        }
 
         
 
