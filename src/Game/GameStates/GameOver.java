@@ -25,7 +25,7 @@ public class GameOver extends State {
 	        
 	        
 	        ///IMAGENES DEL WINDOW DE GAME OVER
-	        uiManager.addObjects(new UIImageButton(handler.getWidth()/33 + 192, handler.getHeight() - 150, 128, 64, Images.butstart, new ClickListlener() {
+	        uiManager.addObjects(new UIImageButton(handler.getWidth()/33 + 192, handler.getHeight() - 325, 128, 64, Images.butstart, new ClickListlener() {
 	     
 	        	@Override
 	            public void onClick() {
@@ -35,16 +35,25 @@ public class GameOver extends State {
 	            }
 	        }));
 
-	        uiManager.addObjects(new UIImageButton(33 + 192 * 2,  handler.getGame().getHeight() - 150, 128, 64, Images.BTitle, () -> {
+	        uiManager.addObjects(new UIImageButton(33 + 192 * 2,  handler.getGame().getHeight() - 325, 128, 64, Images.BTitle, () -> {
 	            handler.getMouseManager().setUimanager(null);
 	            State.setState(handler.getGame().menuState);
 	        }));
 	        
-	        uiManager.addObjects(new UIImageButton(33 + 192 * 3,  handler.getGame().getHeight() - 300, 128, 64, Images.Score, () -> {
+	        //boton de restart
+	        uiManager.addObjects(new UIImageButton(33 + 192 * 3,  handler.getGame().getHeight() - 325, 128, 64, Images.Restart, () -> {
 	            handler.getMouseManager().setUimanager(null);
-	            State.setState(handler.getGame().menuState);
+	           // State.setState(handler.getGame().menuState);
+				handler.getGame().reStart(); 
+				State.setState(handler.getGame().gameState);
 	        }));
-//	        
+	        
+	        //para añadir el score en la game over screen 
+//	        uiManager.addObjects(new UIImageButton(33 + 192 * 3,  handler.getGame().getHeight() - 300, 128, 64, Images.Score, () -> {
+//	            handler.getMouseManager().setUimanager(null);
+//	            State.setState(handler.getGame().menuState);
+//	        }));
+//	the system crash        
 	        
 	}
 	
@@ -61,9 +70,16 @@ public class GameOver extends State {
         g.setColor(Color.darkGray);
         g.fillRect(0,0,handler.getWidth(),handler.getHeight());
         g.drawImage(Images.GameOver,0,0,handler.getGame().getWidth(),handler.getGame().getHeight(),null);
-               
         uiManager.Render(g);
 
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
 }
