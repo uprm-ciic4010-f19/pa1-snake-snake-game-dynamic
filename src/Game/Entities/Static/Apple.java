@@ -15,28 +15,18 @@ public class Apple {
 
     public int xCoord;
     public int yCoord;
+    private boolean appleGood = true;
 
     public Apple(Handler handler,int x, int y){
         this.handler=handler;
         this.xCoord=x;
         this.yCoord=y;
     }
-//        public boolean goodapple() {
-//return;
-//        }
-//  //   if (fps< 300) {
-// 
-//    //	 Apple.setColor(Color.RED);
-//     } 
-//     
-//       public boolean  badapple() {
-//         return;
-//       }
-        //	if (fps > 300) {
-        // if ()
-         
-        }
+    
 
-        
-
-
+    
+    //state of the apple
+	public boolean isGood(){
+	return appleGood;
+	}
+}

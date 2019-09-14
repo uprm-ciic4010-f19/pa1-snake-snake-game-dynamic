@@ -82,11 +82,7 @@ public class Player {
         	// press esc key to pause the game
         	if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE))
         		 { 
-        		
-//        	State.getState();
-//			State.setState(PauseState);
-			State.setState(handler.getGame().pauseState);
-
+        		State.setState(handler.getGame().pauseState);
            		 
         	}    // press 1 key to reStart the world
         		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_1)) {
@@ -96,7 +92,6 @@ public class Player {
         	if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){ 
                 checkCollisionAndMove();
                 speed= speed +1;
-        	
         	}
           
         
@@ -168,12 +163,12 @@ public class Player {
             handler.getWorld().body.removeLast();
             handler.getWorld().body.addFirst(new Tail(x, y,handler));}
   
- // code for collision with body
-       switch(direction) {
-       case "Up":
-    	   if (handler.getWorld().player.xCoord == handler.getWorld().body.add(new Tail(x, y, handler))) {
-          
-     }}
+        // code for collision with body
+        for (int i = 1; i < handler.getWorld().body.size(); i++) {
+        	if (handler.getWorld().body.get(0).y == handler.getWorld().body.get(i).y && handler.getWorld().body.get(0).x == handler.getWorld().body.get(i).x) {
+        		State.setState(handler.getGame().gameOver);
+        	}
+        }
 
 	}
 
@@ -190,20 +185,16 @@ public class Player {
                          (j*handler.getWorld().GridPixelsize),
                           handler.getWorld().GridPixelsize,
                           handler.getWorld().GridPixelsize);
-                
-           
-               }
-               
-               }
                 }
+               
+              }
+         }
         
+        //add the score in the game sreen 
         g.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		g.setColor(Color.WHITE);
 		g.drawString("Score: "+Score,64*5, 64);
-
-        
-        
-            }
+     }
         
 
 	
@@ -301,7 +292,7 @@ public class Player {
                             tail=(new Tail(this.xCoord-1,this.yCoord,handler));
                         }else{
                             tail=(new Tail(this.xCoord+1,this.yCoord,handler));
-                        } System.out.println("Tu biscochito");
+                        }// System.out.println("Tu biscochito");
                     }
                 }else{
                     if(handler.getWorld().body.getLast().y!=0){
@@ -323,11 +314,11 @@ public class Player {
       
         // added code to Eat() to increase speed and calculate Score
         checkCollisionAndMove();
-         speed= speed +1;
+         speed++;
          Score = Math.sqrt(2*Score +1); 	        
     }
  
-    
+    //game over screen 
 	public void kill(){
         lenght = 0;
        
@@ -335,11 +326,7 @@ public class Player {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
                 handler.getWorld().playerLocation[i][j]= true;
-            
-                if(handler.getWorld().playerLocation[i][j] == handler.getWorld().playerLocation[0][0]) {
-//                	System.out.println("GAME OVER");
-        			State.setState(handler.getGame().gameOver);
-                }
+        		State.setState(handler.getGame().gameOver);
             }
         }
     }

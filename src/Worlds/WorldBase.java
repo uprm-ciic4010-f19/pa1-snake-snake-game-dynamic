@@ -52,19 +52,12 @@ public abstract class WorldBase {
     }
 
     public void render(Graphics Grid){
-    	   
         for (int i = 0; i <= 800; i = i + GridPixelsize) {
-
-        	
-			Grid.setColor(new Color(102 ,0 ,153));
-					
+			Grid.setColor(new Color(102 ,0 ,153));					
             Grid.drawLine(0, i, handler.getWidth() , i);
             Grid.drawLine(i,0,i,handler.getHeight());
-
         }
-
-
-
     }
 
+    
 }
